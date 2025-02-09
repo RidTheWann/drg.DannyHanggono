@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>drg. Danny Hanggono</title>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --container-bg: rgba(0, 0, 0, 0.8);
+      --primary-color: #1e90ff;
+      --primary-dark: #0d74d1;
+      --text-color: #fff;
+      --input-border: #555;
+      --error-color: #ff6b6b;
+    }
+
+    /* Reset dasar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      background: var(--bg-color);
+      font-family: 'Arial', sans-serif;
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* Kontainer Login */
+    .login-container {
+      background: var(--container-bg);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Background Gradient Animation */
+    .login-container::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transform: rotate(25deg);
+      animation: moveGradient 12s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes moveGradient {
+      0% {
+        transform: rotate(25deg) translate(0, 0);
+      }
+
+      50% {
+        transform: rotate(25deg) translate(10px, 10px);
+      }
+
+      100% {
+        transform: rotate(25deg) translate(0, 0);
+      }
+    }
+
+    /* Judul */
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8em;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+      animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Form Group */
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+      color: var(--text-color);
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-group input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 10px rgba(30, 144, 255, 0.6);
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      color: #aaa;
+      pointer-events: none;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus+label,
+    .form-group input:not(:placeholder-shown)+label {
+      top: -8px;
+      left: 8px;
+      background: var(--bg-color);
+      padding: 0 4px;
+      font-size: 0.8em;
+      color: var(--primary-color);
+    }
+
+    /* Toggle Password */
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      z-index: 2;
+      outline: none;
+      padding: 0;
+    }
+
+    .toggle-password svg {
+      width: 24px;
+      height: 24px;
+      transition: stroke 0.3s ease;
+    }
+
+    .toggle-password:hover svg {
+      stroke: var(--primary-color);
+    }
+
+    /* Pesan Error */
+    .error-message {
+      color: var(--error-color);
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.9em;
+      display: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Tombol Login */
+    .btn-login {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      padding: 12px;
+      background: var(--primary-color);
+      border: none;
+      border-radius: 4px;
+      color: var(--text-color);
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      z-index: 1;
+    }
+
+    .btn-login:hover {
+      background: var(--primary-dark);
+      transform: scale(1.02);
+    }
+
+    /* Ripple Effect */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      animation: rippleEffect 0.6s linear;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    @keyframes rippleEffect {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9em;
+      opacity: 0.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsivitas */
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 30px 20px;
+      }
+
+      .login-container h2 {
+        font-size: 1.6em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>Praktek Mandiri drg. Danny Hanggono</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <input type="text" id="username" required placeholder=" " autocomplete="on">
+        <label for="username">Username</label>
+      </div>
+      <div class="form-group password-group">
+        <input type="password" id="password" required placeholder=" " autocomplete="on">
+        <label for="password">Password</label>
+        <button type="button" class="toggle-password" id="togglePassword"></button>
+      </div>
+      <button type="submit" class="btn-login">Login</button>
+      <div id="errorMessage" class="error-message"></div>
+    </form>
+    <div class="footer">
+      <p>&copy; Created by Rid The Wann</p>
+    </div>
+  </div>
+
+  <script>
+    // SVG Icon untuk toggle password
+    const eyeIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#aaa" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>`;
+    const eyeSlashIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#aaa" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+
+    const togglePasswordBtn = document.getElementById('togglePassword');
+    togglePasswordBtn.innerHTML = eyeIcon;
+
+    // Toggle untuk menampilkan/menyembunyikan password
+    togglePasswordBtn.addEventListener('click', function () {
+      const passwordInput = document.getElementById('password');
+      const currentType = passwordInput.getAttribute('type');
+      if (currentType === 'password') {
+        passwordInput.setAttribute('type', 'text');
+        this.innerHTML = eyeSlashIcon;
+      } else {
+        passwordInput.setAttribute('type', 'password');
+        this.innerHTML = eyeIcon;
+      }
+    });
+
+    // Ripple effect pada tombol login
+    const btnLogin = document.querySelector('.btn-login');
+    btnLogin.addEventListener('click', function (e) {
+      const rect = this.getBoundingClientRect();
+      const circle = document.createElement('span');
+      const diameter = Math.max(this.clientWidth, this.clientHeight);
+      const radius = diameter / 2;
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${e.clientX - rect.left - radius}px`;
+      circle.style.top = `${e.clientY - rect.top - radius}px`;
+      circle.classList.add('ripple');
+      this.appendChild(circle);
+      setTimeout(() => circle.remove(), 600);
+    });
+
+    // Data akun yang didukung
+    const accounts = [
+      { username: "user", password: "user", redirect: "folder/Home.html" },
+      { username: "user2", password: "pass2", redirect: "folder/Home.html" },
+      { username: "admin", password: "admin123", redirect: "folder/Home.html" }
+    ];
+
+    // Validasi akun saat submit form
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const inputUsername = document.getElementById('username').value.trim();
+      const inputPassword = document.getElementById('password').value;
+      const errorMsg = document.getElementById('errorMessage');
+      const account = accounts.find(acc => acc.username === inputUsername && acc.password === inputPassword);
+
+      if (account) {
+        btnLogin.textContent = 'Logging in...';
+        btnLogin.style.background = 'var(--primary-dark)';
+        errorMsg.style.display = 'none';
+        setTimeout(() => {
+          window.location.href = account.redirect;
+        }, 500);
+      } else {
+        errorMsg.textContent = "Username atau Password salah!";
+        errorMsg.style.display = "block";
+        setTimeout(() => {
+          errorMsg.style.display = "none";
+        }, 3000);
+      }
+    });
+  </script>
+</body>
+
+</html>

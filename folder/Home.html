@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>drg. Danny Hanggono</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Fonts untuk tampilan modern -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #1e90ff;
+      --secondary-color: #0d74d1;
+      --background-color: #121212;
+      --navbar-bg: #1e1e1e;
+      --card-bg: rgba(0, 0, 0, 0.7);
+      --text-color: #fff;
+      --shadow-color: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Reset dan dasar styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      font-family: "Roboto", sans-serif;
+      background: var(--background-color);
+      color: var(--text-color);
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--navbar-bg);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px var(--shadow-color);
+      position: relative;
+    }
+
+    .navbar .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .navbar .logo:hover {
+      cursor: default;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu-toggle span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: var(--text-color);
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* Animasi hamburger menu menjadi cross */
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .navbar ul li a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: var(--primary-color);
+    }
+
+    .logout-btn {
+      background: var(--primary-color);
+      padding: 10px 20px;
+      border-radius: 4px;
+      transition: background 0.3s, transform 0.3s;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+
+    .logout-btn:hover {
+      background: var(--secondary-color);
+      transform: scale(1.02);
+    }
+
+    /* Container Utama */
+    .container {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.8s ease-in forwards;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 1)), /* pastikan alpha maksimal adalah 1 */
+    url('DG.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: scroll; /* gunakan scroll agar kompatibel di mobile */
+}
+
+/* Penyesuaian tambahan untuk layar kecil jika diperlukan */
+@media (max-width: 768px) {
+  .container {
+    background-attachment: scroll;
+    /* Jika diperlukan, Anda bisa menyesuaikan nilai padding atau properti lainnya */
+  }
+}
+
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Welcome Section */
+    .welcome {
+      text-align: center;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .welcome h1 {
+      font-size: 2.5em;
+      color: var(--primary-color);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .welcome p {
+      margin-top: 10px;
+      font-size: 1.2em;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    /* Cards Dashboard menggunakan CSS Grid */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .cards.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+
+    .card p {
+      margin-bottom: 20px;
+    }
+
+    .card .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--primary-color);
+      color: var(--text-color);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s, transform 0.3s;
+      text-decoration: none;
+    }
+
+    .card .btn:hover {
+      background: var(--secondary-color);
+      transform: scale(1.02);
+    }
+
+    /* Ripple Effect */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      animation: rippleEffect 0.6s linear;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    @keyframes rippleEffect {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: var(--navbar-bg);
+      border-top: 1px solid #333;
+      font-size: 0.9em;
+      width: 100%;
+    }
+
+    /* Media Query untuk perangkat mobile */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        margin-top: 10px;
+      }
+
+      .navbar ul.active {
+        display: flex;
+      }
+
+      .navbar ul li {
+        width: 100%;
+        text-align: left;
+        padding: 10px 0;
+      }
+
+      .welcome h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation">
+    <div class="logo">Home</div>
+    <div class="menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="navMenu">
+      <li>
+        <a href="../index.html" onclick="clearWelcomeFlag()" class="logout-btn">Logout</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Container Utama -->
+  <main class="container" id="dashboardCards">
+    <div class="welcome" id="welcomeSection">
+      <h1></h1>
+      <p></p>
+    </div>
+
+    <!-- Cards Dashboard -->
+    <div class="cards" id="cardsContainer">
+      <div class="card">
+        <h2>Entry Harian</h2>
+        <p>Catat semua pasien yang sudah periksa hari ini</p>
+        <a href="data-harian.html" class="btn" onclick="actionEntry('entry', event)">Buat Entry</a>
+      </div>
+      <div class="card">
+        <h2>Lihat Entry</h2>
+        <p>Melihat entry harian yang telah disimpan</p>
+        <a href="https://docs.google.com/spreadsheets/d/1Ixd2BhZKvvPRu0XcngLK7jF_TrHcuVXSLcWyuiTsOLU/edit?gid=1700741156"
+          class="btn" onclick="actionEntry('lihat')">Lihat Data Entry</a>
+      </div>
+      <div class="card">
+        <h2>Lokasi Praktek</h2>
+        <p>Lokasi Praktek drg. Danny Hanggono</p>
+        <a href="Link.html" class="btn" onclick="actionEntry('lihat')">Lokasi</a>
+      </div>
+      <div class="card">
+        <h2>Profil</h2>
+        <p>Informasi tentang drg. Danny Hanggono</p>
+        <a href="Profil.html" class="btn" onclick="actionEntry('profil', event)">Lihat Profil</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2024 Praktek Mandiri drg. Danny Hanggono
+  </footer>
+
+  <script>
+    // Toggle menu untuk perangkat mobile
+    const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+    mobileMenuToggle.addEventListener("click", function () {
+      const navMenu = document.getElementById("navMenu");
+      navMenu.classList.toggle("active");
+      mobileMenuToggle.classList.toggle("active");
+    });
+
+    // Fungsi typing animation: tampilkan teks karakter demi karakter
+    function typeText(element, text, delay, callback) {
+      let index = 0;
+      function type() {
+        if (index < text.length) {
+          element.innerHTML += text.charAt(index);
+          index++;
+          setTimeout(type, delay);
+        } else if (callback) {
+          callback();
+        }
+      }
+      type();
+    }
+
+    // Animasi welcome hanya tampil sekali per sesi
+    window.addEventListener("load", function () {
+      const welcomeSection = document.getElementById("welcomeSection");
+      const h1Element = welcomeSection.querySelector("h1");
+      const pElement = welcomeSection.querySelector("p");
+      const h1Text = "Selamat Datang";
+      const pText =
+        "Login sukses";
+
+      if (localStorage.getItem("welcomeShown")) {
+        welcomeSection.style.display = "none";
+        document.getElementById("cardsContainer").classList.add("show");
+      } else {
+        h1Element.innerHTML = "";
+        pElement.innerHTML = "";
+        typeText(h1Element, h1Text, 50, function () {
+          typeText(pElement, pText, 40, function () {
+            setTimeout(() => {
+              welcomeSection.style.opacity = "0";
+              setTimeout(() => {
+                welcomeSection.style.display = "none";
+                document
+                  .getElementById("cardsContainer")
+                  .classList.add("show");
+                localStorage.setItem("welcomeShown", "true");
+              }, 500);
+            }, 500);
+          });
+        });
+      }
+    });
+
+    // Fungsi untuk menghapus flag welcome saat logout
+    function clearWelcomeFlag() {
+      localStorage.removeItem("welcomeShown");
+    }
+  </script>
+</body>
+
+</html>
