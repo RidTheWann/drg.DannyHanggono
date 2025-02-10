@@ -42,15 +42,20 @@
 
     /* Navbar */
     .navbar {
-      background: var(--navbar-bg);
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      box-shadow: 0 2px 5px var(--shadow-color);
-      position: relative;
-    }
+  background: var(--navbar-bg);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  position: fixed;  /* Membuat navbar tetap di atas */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;    /* Pastikan berada di atas elemen lain */
+}
+
 
     .navbar .logo {
       font-size: 1.8em;
