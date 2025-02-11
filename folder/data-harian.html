@@ -1,111 +1,127 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8">
-  <!-- Tambahkan viewport-fit=cover untuk mendukung layar penuh pada perangkat modern -->
+  <!-- viewport-fit=cover untuk mendukung layar penuh pada perangkat modern -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>drg.Danny Hanggono</title>
+  <title>drg. Danny Hanggono</title>
+  <link rel="icon" href="gigi.png" type="image/png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
   <style>
-    /* Pastikan html dan body menempati seluruh layar */
-    html,
-    body {
+    :root {
+      --bg-color: #121212;
+      --container-bg: #1e1e1e;
+      --primary-color: #1e90ff;
+      --primary-dark: #0d74d1;
+      --text-color: #fff;
+      --input-border: #555;
+      --error-color: #ff6b6b;
+    }
+    /* Reset dasar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
       width: 100%;
-      height: 100%;
       margin: 0;
       padding: 0;
     }
-
-    /* Latar belakang dan pengaturan dasar */
+    /* Global Styles */
     body {
-      background: #121212;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: var(--bg-color);
       font-family: 'Poppins', sans-serif;
-      color: #fff;
+      color: var(--text-color);
     }
-
-    /* Container utama yang full screen */
+    /* Container utama */
     .container-card {
-      width: 100vw;
-      height: 100vh;
-      background: #1e1e1e;
+      background: var(--container-bg);
       padding: 30px;
       box-sizing: border-box;
-      overflow-y: auto;
-      /* agar konten yang panjang tetap bisa di-scroll */
       animation: fadeIn 0.8s ease-in-out;
     }
-
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Tampilan untuk PC/Laptop */
+    @media (min-width: 769px) {
+      html, body {
+        height: 100%;
       }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container-card {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
       }
     }
-
+    /* Tampilan untuk Mobile: izinkan scroll bila konten melebihi tinggi layar */
+    @media (max-width: 768px) {
+      html, body {
+        height: auto;
+      }
+      body {
+        display: block;
+      }
+      .container-card {
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+      }
+    }
     /* Styling Judul */
     .title {
       text-align: center;
       margin-bottom: 20px;
-      color: #1e90ff;
+      color: var(--primary-color);
       font-size: 2em;
     }
-
     /* Override Bulma untuk label dan input */
     .field label {
-      color: #fff;
+      color: var(--text-color);
     }
-
     .input,
     .select select {
       background: #2a2a2a;
-      border: 1px solid #444;
-      color: #fff;
+      border: 1px solid var(--input-border);
+      color: var(--text-color);
     }
-
     .input:focus,
     .select select:focus {
-      border-color: #1e90ff;
-      box-shadow: 0 0 5px #1e90ff;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 5px var(--primary-color);
       outline: none;
     }
-
     /* Styling tombol Bulma */
     .button.is-primary {
-      background: #1e90ff;
+      background: var(--primary-color);
       border: none;
     }
-
     .button.is-primary:hover {
-      background: #0d74d1;
+      background: var(--primary-dark);
     }
-
     .button.is-danger {
       background: #e74c3c;
       border: none;
     }
-
     .button.is-danger:hover {
       background: #c0392b;
     }
-
-    /* Styling Checkbox */
+    /* Styling Checkbox dengan shadow pada teks */
     .checkbox-group {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       margin-top: 10px;
     }
-
     .checkbox-group label {
       display: flex;
       align-items: center;
@@ -117,63 +133,48 @@
       cursor: pointer;
       transition: all 0.3s ease;
       text-align: center;
-      color: #0D47A1;
+      color: var(--primary-color);
       border: 1px solid rgba(255, 255, 255, 0.3);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     }
-
     .checkbox-group label:hover {
-      background: linear-gradient(45deg, #1565C0, #1E88E5);
+      background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
       transform: scale(1.05);
-      color: white;
+      color: var(--text-color);
     }
-
     .checkbox-group label:active {
       box-shadow: 0 0 10px rgba(21, 101, 192, 0.5);
     }
-
     .checkbox-group input[type="checkbox"] {
       display: none;
     }
-
     .checkbox-group input[type="checkbox"]:checked+label {
-      background: linear-gradient(45deg, #1565C0, #1E88E5);
-      color: white;
+      background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+      color: var(--text-color);
       font-weight: bold;
     }
-
     /* Tombol Kembali */
     .back-button {
       margin-top: 20px;
       text-align: center;
     }
-
     .back-button button {
-      background: #1e90ff;
-      color: #fff;
+      background: var(--primary-color);
+      color: var(--text-color);
       border: none;
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
       transition: background 0.3s ease;
     }
-
     .back-button button:hover {
-      background: #0d74d1;
+      background: var(--primary-dark);
     }
-
     /* Animasi status */
     @keyframes slideDown {
-      from {
-        transform: translateY(-20px);
-        opacity: 0;
-      }
-
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
-
     .status-message {
       display: none;
       margin-top: 10px;
@@ -182,23 +183,19 @@
       font-weight: bold;
       border-radius: 5px;
     }
-
     .loading {
       background-color: blue;
-      color: white;
+      color: var(--text-color);
       animation: slideDown 0.5s ease forwards;
     }
-
     .success {
       background-color: green;
-      color: white;
+      color: var(--text-color);
     }
-
     .error {
-      background-color: red;
-      color: white;
+      background-color: var(--error-color);
+      color: var(--text-color);
     }
-
     /* Responsive tambahan jika diperlukan */
     @media (max-width: 768px) {
       .container-card {
@@ -207,31 +204,32 @@
     }
   </style>
 </head>
-
 <body>
   <div class="container-card">
     <h1 class="title">Data Harian drg. Danny Hanggono</h1>
     <form id="form" method="POST">
-      <!-- Contoh input; sesuaikan dengan field yang diperlukan -->
+      <!-- Input Tanggal Kunjungan dengan tanggal default otomatis -->
       <div class="field">
         <label class="label">Tanggal Kunjungan</label>
         <div class="control">
-          <input class="input" type="date" name="Tanggal Kunjungan">
+          <input class="input" type="date" name="Tanggal Kunjungan" id="tanggal-kunjungan">
         </div>
       </div>
-
+      <!-- Input Nama Pasien -->
       <div class="field">
         <label class="label">Nama Pasien</label>
         <div class="control">
           <input class="input" type="text" name="Nama Pasien" placeholder="Masukkan Nama Pasien">
         </div>
       </div>
+      <!-- Input No. RM -->
       <div class="field">
         <label class="label">No. RM</label>
         <div class="control">
           <input class="input" type="text" name="No.RM" placeholder="Masukkan Nomor RM">
         </div>
       </div>
+      <!-- Pilihan Kelamin -->
       <div class="field">
         <label class="label">Kelamin</label>
         <div class="control">
@@ -243,6 +241,7 @@
           </div>
         </div>
       </div>
+      <!-- Pilihan Biaya -->
       <div class="field">
         <label class="label">Biaya</label>
         <div class="control">
@@ -254,6 +253,7 @@
           </div>
         </div>
       </div>
+      <!-- Checkbox Tindakan -->
       <div class="field">
         <label class="label">Tindakan</label>
         <div class="checkbox-group">
@@ -273,12 +273,14 @@
           <label for="rujuk">Rujuk</label>
         </div>
       </div>
+      <!-- Input Lainnya -->
       <div class="field">
         <label class="label">Lainnya</label>
         <div class="control">
           <input class="input" type="text" name="Lainnya" placeholder="Tindakan Lainnya">
         </div>
       </div>
+      <!-- Tombol Submit dan Cancel -->
       <div class="field is-grouped">
         <div class="control">
           <button class="button is-primary" type="submit" id="submit-button">Kirim data</button>
@@ -289,29 +291,32 @@
       </div>
       <p id="message" class="status-message"></p>
     </form>
-
     <script>
+      // Atur tanggal default ke hari ini untuk input kalender
+      document.addEventListener('DOMContentLoaded', function () {
+        const tanggalInput = document.getElementById('tanggal-kunjungan');
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // Bulan dimulai dari 0
+        const yyyy = today.getFullYear();
+        const formattedToday = `${yyyy}-${mm}-${dd}`;
+        tanggalInput.value = formattedToday;
+      });
+
       // Submit form dengan AJAX menggunakan Fetch API
       document.getElementById("form").addEventListener("submit", async function (e) {
-        e.preventDefault(); // Cegah reload halaman
-
+        e.preventDefault();
         const messageEl = document.getElementById("message");
         const submitBtn = document.getElementById("submit-button");
-
-        // Tampilkan status loading
         messageEl.textContent = "Mengirim data...";
         messageEl.className = "status-message loading";
         messageEl.style.display = "block";
-
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
         submitBtn.disabled = true;
         submitBtn.style.opacity = "0.7";
-
-        // Ambil data formulir
         const formData = new FormData(this);
         const formObject = {};
         formData.forEach((value, key) => { formObject[key] = value; });
-
         try {
           const response = await fetch(
             "https://script.google.com/macros/s/AKfycbyleypCzMFhUpmPt0_htQXF85iY1mkeogLdARuEkGysZFkqCn1zgJDnrZYTNu_vr0Vt/exec",
@@ -336,26 +341,23 @@
           messageEl.textContent = "❌ Terjadi kesalahan saat mengirim data!";
           messageEl.className = "status-message error";
         } finally {
-          // Reset tampilan tombol setelah 3 detik
           setTimeout(() => {
             messageEl.style.animation = "fadeOut 1s ease forwards";
             setTimeout(() => {
               messageEl.style.display = "none";
               messageEl.style.animation = "";
             }, 1000);
-            submitBtn.innerHTML = "Kirim";
+            submitBtn.innerHTML = "Kirim data";
             submitBtn.disabled = false;
             submitBtn.style.opacity = "1";
             submitBtn.style.backgroundColor = "";
           }, 3000);
         }
       });
-
       // Tombol Batal: kembali ke halaman sebelumnya
       document.getElementById("cancel-button").addEventListener("click", function () {
         window.history.back();
       });
-
       // Jika ada tombol "Kembali" lain, pastikan ID-nya ada
       const backButton = document.getElementById("back-button");
       if (backButton) {
@@ -366,5 +368,4 @@
     </script>
   </div>
 </body>
-
 </html>

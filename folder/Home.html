@@ -1,82 +1,68 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>drg. Danny Hanggono</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="gigi.png" type="image/png">
   <!-- Google Fonts untuk tampilan modern -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
+      --bg-color: #121212;
+      --container-bg: #1e1e1e;
       --primary-color: #1e90ff;
-      --secondary-color: #0d74d1;
-      --background-color: #121212;
-      --navbar-bg: #1e1e1e;
-      --card-bg: rgba(0, 0, 0, 0.7);
+      --primary-dark: #0d74d1;
       --text-color: #fff;
       --shadow-color: rgba(0, 0, 0, 0.7);
     }
-
-    /* Reset dan dasar styling */
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-    html,
-    body {
+    html, body {
       height: 100%;
       width: 100%;
-      font-family: "Roboto", sans-serif;
-      background: var(--background-color);
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg-color);
       color: var(--text-color);
     }
-
     body {
       display: flex;
       flex-direction: column;
       line-height: 1.6;
     }
-
     /* Navbar */
     .navbar {
-  background: var(--navbar-bg);
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  box-shadow: 0 2px 5px var(--shadow-color);
-  position: fixed;  /* Membuat navbar tetap di atas */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;    /* Pastikan berada di atas elemen lain */
-}
-
-
+      background: var(--container-bg);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 5px var(--shadow-color);
+    }
     .navbar .logo {
       font-size: 1.8em;
       font-weight: bold;
       color: var(--primary-color);
     }
-
-    .navbar .logo:hover {
-      cursor: default;
-    }
-
     .menu-toggle {
       display: none;
-      flex-direction: column;
+      background: none;
+      border: none;
       cursor: pointer;
-      width: 30px;
-      height: 30px;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      width: 30px;
+      height: 30px;
     }
-
     .menu-toggle span {
       display: block;
       height: 3px;
@@ -85,113 +71,78 @@
       margin: 4px 0;
       transition: all 0.3s ease;
     }
-
-    /* Animasi hamburger menu menjadi cross */
     .menu-toggle.active span:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
-
     .menu-toggle.active span:nth-child(2) {
       opacity: 0;
     }
-
     .menu-toggle.active span:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg);
     }
-
     .navbar ul {
       list-style: none;
       display: flex;
       gap: 20px;
-      flex-wrap: wrap;
     }
-
     .navbar ul li a {
       color: var(--text-color);
       text-decoration: none;
       transition: color 0.3s;
     }
-
     .navbar ul li a:hover {
       color: var(--primary-color);
     }
-
     .logout-btn {
       background: var(--primary-color);
       padding: 10px 20px;
       border-radius: 4px;
       transition: background 0.3s, transform 0.3s;
-      text-decoration: none;
       color: var(--text-color);
+      text-decoration: none;
     }
-
     .logout-btn:hover {
-      background: var(--secondary-color);
+      background: var(--primary-dark);
       transform: scale(1.02);
     }
-
-    /* Container Utama */
+    /* Main Container */
     .container {
-  flex: 1;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 0.8s ease-in forwards;
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), /* pastikan alpha maksimal adalah 1 */
-    url('DG.jpg') no-repeat center center;
-  background-size: cover;
-  background-attachment: scroll; /* gunakan scroll agar kompatibel di mobile */
-}
-
-/* Penyesuaian tambahan untuk layar kecil jika diperlukan */
-@media (max-width: 768px) {
-  .container {
-    background-attachment: scroll;
-    /* Jika diperlukan, Anda bisa menyesuaikan nilai padding atau properti lainnya */
-  }
-}
-
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    /* Welcome Section */
-    .welcome {
-      text-align: center;
-      margin-bottom: 30px;
+      flex: 1;
+      padding: 80px 20px 20px; /* Padding atas agar tidak tertutup navbar */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100px;
+      animation: fadeIn 0.8s ease-in forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Welcome Section (teks selalu di tengah layar) */
+    .welcome {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      min-height: calc(100vh - 80px);
       transition: opacity 0.5s ease-out;
     }
-
     .welcome h1 {
       font-size: 2.5em;
       color: var(--primary-color);
-      overflow: hidden;
+      margin-bottom: 10px;
       white-space: nowrap;
+      overflow: hidden;
     }
-
     .welcome p {
-      margin-top: 10px;
       font-size: 1.2em;
-      overflow: hidden;
       white-space: nowrap;
+      overflow: hidden;
     }
-
-    /* Cards Dashboard menggunakan CSS Grid */
+    /* Cards Dashboard */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -202,36 +153,30 @@
       transform: translateY(20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
-
     .cards.show {
       opacity: 1;
       transform: translateY(0);
     }
-
     .card {
-      background: var(--card-bg);
+      background: var(--container-bg);
       padding: 20px;
       border-radius: 8px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 4px 8px var(--shadow-color);
       transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+      position: relative;
     }
-
     .card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 8px 16px var(--shadow-color);
     }
-
     .card h2 {
       margin-bottom: 10px;
       color: var(--primary-color);
     }
-
     .card p {
       margin-bottom: 20px;
     }
-
     .card .btn {
       display: block;
       width: 100%;
@@ -242,120 +187,90 @@
       border: none;
       border-radius: 4px;
       cursor: pointer;
-      position: relative;
-      overflow: hidden;
       transition: background 0.3s, transform 0.3s;
       text-decoration: none;
     }
-
     .card .btn:hover {
-      background: var(--secondary-color);
+      background: var(--primary-dark);
       transform: scale(1.02);
     }
-
-    /* Ripple Effect */
-    .ripple {
-      position: absolute;
-      border-radius: 50%;
-      transform: scale(0);
-      animation: rippleEffect 0.6s linear;
-      background: rgba(255, 255, 255, 0.4);
-    }
-
-    @keyframes rippleEffect {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-
     /* Footer */
     footer {
       text-align: center;
       padding: 15px;
-      background: var(--navbar-bg);
+      background: var(--container-bg);
       border-top: 1px solid #333;
       font-size: 0.9em;
       width: 100%;
     }
-
-    /* Media Query untuk perangkat mobile */
+    /* Responsivitas untuk perangkat mobile */
     @media (max-width: 768px) {
       .menu-toggle {
         display: flex;
       }
-
       .navbar ul {
         flex-direction: column;
         width: 100%;
         display: none;
         margin-top: 10px;
       }
-
       .navbar ul.active {
         display: flex;
       }
-
       .navbar ul li {
         width: 100%;
         text-align: left;
         padding: 10px 0;
       }
-
       .welcome h1 {
         font-size: 2em;
       }
     }
   </style>
 </head>
-
 <body>
   <!-- Navbar -->
-  <nav class="navbar" role="navigation">
+  <nav class="navbar">
     <div class="logo">Home</div>
-    <div class="menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation">
+    <button class="menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </button>
     <ul id="navMenu">
-      <li>
-        <a href="../index.html" onclick="clearWelcomeFlag()" class="logout-btn">Logout</a>
-      </li>
+      <li><a href="../index.html" class="logout-btn" id="logoutBtn">Logout</a></li>
     </ul>
   </nav>
 
-  <!-- Container Utama -->
+  <!-- Main Container -->
   <main class="container" id="dashboardCards">
-    <div class="welcome" id="welcomeSection">
+    <section class="welcome" id="welcomeSection">
       <h1></h1>
       <p></p>
-    </div>
-
+    </section>
     <!-- Cards Dashboard -->
-    <div class="cards" id="cardsContainer">
-      <div class="card">
+    <section class="cards" id="cardsContainer">
+      <article class="card">
         <h2>Entry Harian</h2>
         <p>Catat semua pasien yang sudah periksa hari ini</p>
-        <a href="data-harian.html" class="btn" onclick="actionEntry('entry', event)">Buat Entry</a>
-      </div>
-      <div class="card">
+        <a href="data-harian.html" class="btn" data-action="entry">Buat Entry</a>
+      </article>
+      <article class="card">
         <h2>Lihat Entry</h2>
         <p>Melihat entry harian yang telah disimpan</p>
-        <a href="https://docs.google.com/spreadsheets/d/1Ixd2BhZKvvPRu0XcngLK7jF_TrHcuVXSLcWyuiTsOLU/edit?gid=1700741156"
-          class="btn" onclick="actionEntry('lihat')">Lihat Data Entry</a>
-      </div>
-      <div class="card">
+        <a href="https://docs.google.com/spreadsheets/d/1Ixd2BhZKvvPRu0XcngLK7jF_TrHcuVXSLcWyuiTsOLU/edit?gid=1700741156" class="btn" data-action="lihat">Lihat Data Entry</a>
+      </article>
+      <article class="card">
         <h2>Lokasi Praktek</h2>
         <p>Lokasi Praktek drg. Danny Hanggono</p>
-        <a href="Link.html" class="btn" onclick="actionEntry('lihat')">Lokasi</a>
-      </div>
-      <div class="card">
+        <a href="Link.html" class="btn" data-action="lihat">Lokasi</a>
+      </article>
+      <article class="card">
         <h2>Profil</h2>
         <p>Informasi tentang drg. Danny Hanggono</p>
-        <a href="Profil.html" class="btn" onclick="actionEntry('profil', event)">Lihat Profil</a>
-      </div>
-    </div>
+        <a href="Profil.html" class="btn" data-action="profil">Lihat Profil</a>
+      </article>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -364,66 +279,65 @@
   </footer>
 
   <script>
-    // Toggle menu untuk perangkat mobile
-    const mobileMenuToggle = document.getElementById("mobileMenuToggle");
-    mobileMenuToggle.addEventListener("click", function () {
-      const navMenu = document.getElementById("navMenu");
-      navMenu.classList.toggle("active");
-      mobileMenuToggle.classList.toggle("active");
-    });
-
-    // Fungsi typing animation: tampilkan teks karakter demi karakter
-    function typeText(element, text, delay, callback) {
-      let index = 0;
-      function type() {
-        if (index < text.length) {
-          element.innerHTML += text.charAt(index);
-          index++;
-          setTimeout(type, delay);
-        } else if (callback) {
-          callback();
-        }
-      }
-      type();
-    }
-
-    // Animasi welcome hanya tampil sekali per sesi
-    window.addEventListener("load", function () {
-      const welcomeSection = document.getElementById("welcomeSection");
-      const h1Element = welcomeSection.querySelector("h1");
-      const pElement = welcomeSection.querySelector("p");
-      const h1Text = "Selamat Datang";
-      const pText =
-        "Login sukses";
-
-      if (localStorage.getItem("welcomeShown")) {
-        welcomeSection.style.display = "none";
-        document.getElementById("cardsContainer").classList.add("show");
-      } else {
-        h1Element.innerHTML = "";
-        pElement.innerHTML = "";
-        typeText(h1Element, h1Text, 50, function () {
-          typeText(pElement, pText, 40, function () {
-            setTimeout(() => {
-              welcomeSection.style.opacity = "0";
-              setTimeout(() => {
-                welcomeSection.style.display = "none";
-                document
-                  .getElementById("cardsContainer")
-                  .classList.add("show");
-                localStorage.setItem("welcomeShown", "true");
-              }, 500);
-            }, 500);
-          });
+    (function() {
+      document.addEventListener("DOMContentLoaded", function() {
+        // Toggle mobile menu
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const navMenu = document.getElementById("navMenu");
+        mobileMenuToggle.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+          mobileMenuToggle.classList.toggle("active");
         });
-      }
-    });
 
-    // Fungsi untuk menghapus flag welcome saat logout
-    function clearWelcomeFlag() {
-      localStorage.removeItem("welcomeShown");
-    }
+        // Fungsi animasi ketikan (typing effect)
+        function typeText(element, text, delay, callback) {
+          let index = 0;
+          element.textContent = "";
+          function type() {
+            if (index < text.length) {
+              element.textContent += text.charAt(index);
+              index++;
+              setTimeout(type, delay);
+            } else if (callback) {
+              callback();
+            }
+          }
+          type();
+        }
+
+        // Animasi welcome section dengan pengecekan localStorage
+        const welcomeSection = document.getElementById("welcomeSection");
+        const h1Element = welcomeSection.querySelector("h1");
+        const pElement = welcomeSection.querySelector("p");
+        const h1Text = "Selamat Datang";
+        const pText = "Login sukses";
+        const cardsContainer = document.getElementById("cardsContainer");
+
+        if (localStorage.getItem("welcomeShown")) {
+          welcomeSection.style.display = "none";
+          cardsContainer.classList.add("show");
+        } else {
+          typeText(h1Element, h1Text, 50, function() {
+            typeText(pElement, pText, 40, function() {
+              setTimeout(function() {
+                welcomeSection.style.opacity = "0";
+                setTimeout(function() {
+                  welcomeSection.style.display = "none";
+                  cardsContainer.classList.add("show");
+                  localStorage.setItem("welcomeShown", "true");
+                }, 500);
+              }, 500);
+            });
+          });
+        }
+
+        // Hapus flag welcome saat logout
+        const logoutBtn = document.getElementById("logoutBtn");
+        logoutBtn.addEventListener("click", function() {
+          localStorage.removeItem("welcomeShown");
+        });
+      });
+    })();
   </script>
 </body>
-
 </html>
