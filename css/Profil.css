@@ -1,0 +1,246 @@
+/* Global Style dan Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Background dengan animasi gradient bergerak */
+body {
+    background: #121212;
+    background-size: 600% 600%;
+    animation: gradientAnimation 15s ease infinite;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Navbar */
+.navbar {
+    background: #1e1e1e;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar .logo {
+    font-size: 1.8em;
+    color: #1e90ff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+/* Tombol Kembali di Navbar */
+.navbar .back-button button {
+    background: #1e90ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.navbar .back-button button:hover {
+    background: #0d74d1;
+    transform: scale(1.05);
+}
+
+/* Kontainer Utama: mengisi sisa layar dan center */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Profile Card */
+.profile-card {
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    animation: popIn 1s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Header Profil */
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header h1 {
+    font-size: 2.8em;
+    color: #1e90ff;
+    margin-top: 15px;
+    animation: textGlow 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+    0% {
+        text-shadow: 0 0 5px #1e90ff;
+    }
+
+    50% {
+        text-shadow: 0 0 20px #1e90ff;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #1e90ff;
+    }
+}
+
+/* Foto Profil dengan animasi rotate */
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 4px solid #1e90ff;
+    animation: rotateIn 2s ease;
+}
+
+@keyframes rotateIn {
+    from {
+        transform: rotate(-360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.profile-picture img {
+    width: 100%;
+    height: auto;
+}
+
+/* Informasi Profil */
+.profile-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-info p {
+    margin-bottom: 15px;
+}
+
+/* Detail Profil dengan slide-in */
+.profile-details {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    animation: slideIn 1s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.profile-details h2 {
+    color: #1e90ff;
+    margin-bottom: 15px;
+}
+
+.profile-details ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.profile-details ul li {
+    margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-header h1 {
+        font-size: 2em;
+    }
+
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-details {
+        margin-top: 20px;
+        padding: 15px;
+    }
+}

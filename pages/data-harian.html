@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>drg. Danny Hanggono - Data Harian</title>
+  <link rel="icon" href="../assets/gigi.png" type="image/png">
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- CSS Khusus Halaman Data Harian -->
+  <link rel="stylesheet" href="../css/data-harian.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+</head>
+<body>
+  <div class="container-card">
+    <h1 class="title">Data Harian drg. Danny Hanggono</h1>
+    <form id="form" method="POST">
+      <!-- Input Tanggal Kunjungan -->
+      <div class="field">
+        <label class="label">Tanggal Kunjungan</label>
+        <div class="control">
+          <input class="input" type="date" name="Tanggal Kunjungan" id="tanggal-kunjungan">
+        </div>
+      </div>
+      <!-- Input Nama Pasien -->
+      <div class="field">
+        <label class="label">Nama Pasien</label>
+        <div class="control">
+          <input class="input" type="text" name="Nama Pasien" placeholder="Masukkan Nama Pasien">
+        </div>
+      </div>
+      <!-- Input No. RM -->
+      <div class="field">
+        <label class="label">No. RM</label>
+        <div class="control">
+          <input class="input" type="text" name="No.RM" placeholder="Masukkan Nomor RM">
+        </div>
+      </div>
+      <!-- Pilihan Kelamin -->
+      <div class="field">
+        <label class="label">Kelamin</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select name="Kelamin">
+              <option value="Laki - Laki">Laki - Laki</option>
+              <option value="Perempuan">Perempuan</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- Pilihan Biaya -->
+      <div class="field">
+        <label class="label">Biaya</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select name="Biaya">
+              <option value="BPJS">BPJS</option>
+              <option value="UMUM">UMUM</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- Checkbox Tindakan -->
+      <div class="field">
+        <label class="label">Tindakan</label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="obat" name="Obat" value="yes">
+          <label for="obat">Obat</label>
+          <input type="checkbox" id="cabut-anak" name="Cabut anak" value="yes">
+          <label for="cabut-anak">Cabut anak</label>
+          <input type="checkbox" id="cabut-dewasa" name="Cabut dewasa" value="yes">
+          <label for="cabut-dewasa">Cabut dewasa</label>
+          <input type="checkbox" id="tambal-sementara" name="Tambal Sementara" value="yes">
+          <label for="tambal-sementara">Tambal Sementara</label>
+          <input type="checkbox" id="tambal-tetap" name="Tambal Tetap" value="yes">
+          <label for="tambal-tetap">Tambal Tetap</label>
+          <input type="checkbox" id="scaling" name="Scaling" value="yes">
+          <label for="scaling">Scaling</label>
+          <input type="checkbox" id="rujuk" name="Rujuk" value="yes">
+          <label for="rujuk">Rujuk</label>
+        </div>
+      </div>
+      <!-- Input Lainnya -->
+      <div class="field">
+        <label class="label">Lainnya</label>
+        <div class="control">
+          <input class="input" type="text" name="Lainnya" placeholder="Tindakan Lainnya">
+        </div>
+      </div>
+      <!-- Tombol Submit dan Cancel -->
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-primary" type="submit" id="submit-button">Kirim data</button>
+        </div>
+        <div class="control">
+          <button class="button is-danger" type="button" id="cancel-button">Kembali</button>
+        </div>
+      </div>
+      <p id="message" class="status-message"></p>
+    </form>
+  </div>
+  <!-- JavaScript Khusus Halaman Data Harian -->
+  <script src="../js/data-harian.js" defer></script>
+</body>
+</html>

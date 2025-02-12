@@ -1,0 +1,261 @@
+:root {
+    --bg-color: #121212;
+    --container-bg: #1e1e1e;
+    --primary-color: #1e90ff;
+    --primary-dark: #0d74d1;
+    --text-color: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.7);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--container-bg);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.navbar .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--text-color);
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: var(--primary-color);
+}
+
+.logout-btn {
+    background: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background 0.3s, transform 0.3s;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.logout-btn:hover {
+    background: var(--primary-dark);
+    transform: scale(1.02);
+}
+
+/* Main Container */
+.container {
+    flex: 1;
+    padding: 80px 20px 20px;
+    /* Padding atas agar tidak tertutup navbar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.8s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Welcome Section (teks selalu di tengah layar) */
+.welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    transition: opacity 0.5s ease-out;
+}
+
+.welcome h1 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.welcome p {
+    font-size: 1.2em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Cards Dashboard */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.cards.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card {
+    background: var(--container-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.card p {
+    margin-bottom: 20px;
+}
+
+.card .btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--primary-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    text-decoration: none;
+}
+
+.card .btn:hover {
+    background: var(--primary-dark);
+    transform: scale(1.02);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: var(--container-bg);
+    border-top: 1px solid #333;
+    font-size: 0.9em;
+    width: 100%;
+}
+
+/* Responsivitas untuk perangkat mobile */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        margin-top: 10px;
+    }
+
+    .navbar ul.active {
+        display: flex;
+    }
+
+    .navbar ul li {
+        width: 100%;
+        text-align: left;
+        padding: 10px 0;
+    }
+
+    .welcome h1 {
+        font-size: 2em;
+    }
+}
