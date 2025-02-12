@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -11,6 +12,7 @@
   <link rel="stylesheet" href="../css/data-harian.css">
   <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
 </head>
+
 <body>
   <div class="container-card">
     <h1 class="title">Data Harian drg. Danny Hanggono</h1>
@@ -65,19 +67,19 @@
         <label class="label">Tindakan</label>
         <div class="checkbox-group">
           <input type="checkbox" id="obat" name="Obat" value="yes">
-          <label for="obat">Obat</label>
+          <label for="obat" class="has-text-weight-bold">Obat</label>
           <input type="checkbox" id="cabut-anak" name="Cabut anak" value="yes">
-          <label for="cabut-anak">Cabut anak</label>
+          <label for="cabut-anak" class="has-text-weight-bold">Cabut anak</label>
           <input type="checkbox" id="cabut-dewasa" name="Cabut dewasa" value="yes">
-          <label for="cabut-dewasa">Cabut dewasa</label>
+          <label for="cabut-dewasa" class="has-text-weight-bold">Cabut dewasa</label>
           <input type="checkbox" id="tambal-sementara" name="Tambal Sementara" value="yes">
-          <label for="tambal-sementara">Tambal Sementara</label>
+          <label for="tambal-sementara" class="has-text-weight-bold">Tambal Sementara</label>
           <input type="checkbox" id="tambal-tetap" name="Tambal Tetap" value="yes">
-          <label for="tambal-tetap">Tambal Tetap</label>
+          <label for="tambal-tetap" class="has-text-weight-bold">Tambal Tetap</label>
           <input type="checkbox" id="scaling" name="Scaling" value="yes">
-          <label for="scaling">Scaling</label>
+          <label for="scaling" class="has-text-weight-bold">Scaling</label>
           <input type="checkbox" id="rujuk" name="Rujuk" value="yes">
-          <label for="rujuk">Rujuk</label>
+          <label for="rujuk" class="has-text-weight-bold">Rujuk</label>
         </div>
       </div>
       <!-- Input Lainnya -->
@@ -96,10 +98,14 @@
           <button class="button is-danger" type="button" id="cancel-button">Kembali</button>
         </div>
       </div>
-      <p id="message" class="status-message"></p>
     </form>
   </div>
+  <!-- Blur overlay -->
+  <div id="blur-overlay"></div>
+  <!-- Pesan status -->
+  <p id="message" class="status-message"></p>
   <!-- JavaScript Khusus Halaman Data Harian -->
   <script src="../js/data-harian.js" defer></script>
 </body>
+
 </html>
