@@ -15,9 +15,11 @@
     box-sizing: border-box;
 }
 
+/* Atur html dan body agar selalu memenuhi viewport */
 html,
 body {
     width: 100%;
+    height: 100vh; /* Selalu set tinggi 100% viewport */
     margin: 0;
     padding: 0;
 }
@@ -27,66 +29,30 @@ body {
     background: var(--bg-color);
     font-family: 'Poppins', sans-serif;
     color: var(--text-color);
+    /* Center konten secara vertikal dan horizontal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Container utama */
+/* Container utama - full screen */
 .container-card {
+    width: 100vw; /* 100% dari lebar viewport */
+    height: 100vh; /* 100% dari tinggi viewport */
+    overflow-y: auto; /* Jika konten lebih tinggi, maka akan ada scroll */
     background: var(--container-bg);
     padding: 30px;
-    box-sizing: border-box;
-    animation: fadeIn 0.8s ease-in-out;
-}
+  }
 
+/* Animasi */
 @keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(-10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-/* Tampilan untuk PC/Laptop */
-@media (min-width: 769px) {
-
-    html,
-    body {
-        height: 100%;
-    }
-
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .container-card {
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-    }
-}
-
-/* Tampilan untuk Mobile */
-@media (max-width: 768px) {
-
-    html,
-    body {
-        height: auto;
-    }
-
-    body {
-        display: block;
-    }
-
-    .container-card {
-        width: 100%;
-        height: auto;
-        min-height: 100vh;
-        overflow-y: auto;
     }
 }
 
@@ -206,7 +172,6 @@ body {
         transform: translateY(-20px);
         opacity: 0;
     }
-
     to {
         transform: translateY(0);
         opacity: 1;
@@ -220,7 +185,6 @@ body {
     height: 24px;
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-top-color: #ffffff;
-    /* Biru khas iOS */
     border-radius: 50%;
     animation: ios-spin 1s linear infinite;
     vertical-align: middle;
@@ -231,13 +195,12 @@ body {
     from {
         transform: rotate(0deg);
     }
-
     to {
         transform: rotate(360deg);
     }
 }
 
-/* Pesan status tanpa box, dengan teks yang jelas dan bayangan */
+/* Pesan status */
 .status-message {
     display: none;
     position: fixed;
@@ -249,7 +212,6 @@ body {
     font-weight: 500;
     text-align: center;
     z-index: 1001;
-    /* Di atas overlay blur */
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -261,20 +223,14 @@ body {
     transform: translate(-50%, -50%);
 }
 
-/* Variasi warna teks untuk status */
-.status-message.loading {
-    color: #ffffff;
-}
-
-.status-message.success {
-    color: #ffffff;
-}
-
+/* Variasi warna status */
+.status-message.loading,
+.status-message.success,
 .status-message.error {
     color: #ffffff;
 }
 
-/* Blur overlay untuk latar belakang */
+/* Blur overlay */
 #blur-overlay {
     display: none;
     position: fixed;
