@@ -1,246 +1,178 @@
-/* Global Style dan Reset */
-* {
+/* Global Reset & Base */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html,
-body {
+  }
+  
+  :root {
+    --bg-color: #121212;
+    --container-bg: #1e1e1e;
+    --primary-color: #90caf9;
+    --primary-dark: #64b5f6;
+    --text-color: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Import Google Fonts: Poppins */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+  
+  html, body {
     height: 100%;
     width: 100%;
-    overflow-x: hidden;
-}
-
-/* Background dengan animasi gradient bergerak */
-body {
-    background: #121212;
-    background-size: 600% 600%;
-    animation: gradientAnimation 15s ease infinite;
-    color: #fff;
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-}
-
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-/* Navbar */
-.navbar {
-    background: #1e1e1e;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    scroll-behavior: smooth;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background: var(--container-bg);
     padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px var(--shadow-color);
+  }
+  
+  .nav-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
-    animation: fadeInDown 1s ease-out;
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.navbar .logo {
-    font-size: 1.8em;
-    color: #1e90ff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-/* Tombol Kembali di Navbar */
-.navbar .back-button button {
-    background: #1e90ff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
-}
-
-.navbar .back-button button:hover {
-    background: #0d74d1;
-    transform: scale(1.05);
-}
-
-/* Kontainer Utama: mengisi sisa layar dan center */
-.container {
-    flex: 1;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* Profile Card */
-.profile-card {
-    background: #1e1e1e;
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 800px;
-    width: 90%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-    animation: popIn 1s ease-out;
-}
-
-@keyframes popIn {
-    0% {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Header Profil */
-.profile-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.profile-header h1 {
-    font-size: 2.8em;
-    color: #1e90ff;
-    margin-top: 15px;
-    animation: textGlow 2s ease-in-out infinite;
-}
-
-@keyframes textGlow {
-    0% {
-        text-shadow: 0 0 5px #1e90ff;
-    }
-
-    50% {
-        text-shadow: 0 0 20px #1e90ff;
-    }
-
-    100% {
-        text-shadow: 0 0 5px #1e90ff;
-    }
-}
-
-/* Foto Profil dengan animasi rotate */
-.profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto;
-    border: 4px solid #1e90ff;
-    animation: rotateIn 2s ease;
-}
-
-@keyframes rotateIn {
-    from {
-        transform: rotate(-360deg);
-    }
-
-    to {
-        transform: rotate(0deg);
-    }
-}
-
-.profile-picture img {
-    width: 100%;
-    height: auto;
-}
-
-/* Informasi Profil */
-.profile-info {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.profile-info p {
-    margin-bottom: 15px;
-}
-
-/* Detail Profil dengan slide-in */
-.profile-details {
-    background: #1e1e1e;
-    padding: 20px;
+    gap: 0.5rem;
+  }
+  
+  /* Back Button */
+  .back-button {
+    background: var(--primary-color);
+    color: #1e1e1e;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
     border-radius: 8px;
-    margin-top: 30px;
-    animation: slideIn 1s ease;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(-50px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.profile-details h2 {
-    color: #1e90ff;
-    margin-bottom: 15px;
-}
-
-.profile-details ul {
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background: var(--primary-dark);
+  }
+  
+  /* Main Container */
+  .container {
+    padding: 80px 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+  }
+  
+  /* Profile Card */
+  .profile-card {
+    background: var(--container-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 8px 16px var(--shadow-color);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  
+  .profile-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Profile Header */
+  .profile-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .profile-header h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+  }
+  
+  /* Profile Details */
+  .profile-details {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    transition: background 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .profile-details h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.5rem;
+  }
+  
+  .profile-details ul {
     list-style: none;
-    padding-left: 0;
-}
-
-.profile-details ul li {
-    margin-bottom: 10px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
+  }
+  
+  .profile-details li {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+  }
+  
+  /* Profile Social */
+  .profile-social {
+    text-align: center;
+  }
+  
+  .profile-social h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .social-icons a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .profile-card {
+      padding: 1.5rem;
+    }
     .profile-header h1 {
-        font-size: 2em;
+      font-size: 1.5rem;
     }
-
-    .profile-picture {
-        width: 120px;
-        height: 120px;
+    .profile-details h2,
+    .profile-social h2 {
+      font-size: 1.25rem;
     }
-
-    .profile-details {
-        margin-top: 20px;
-        padding: 15px;
-    }
-}
+  }

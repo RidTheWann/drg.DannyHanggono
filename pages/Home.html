@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>drg. Danny Hanggono - Home</title>
+  <meta name="description" content="Praktek Mandiri drg. Danny Hanggono - Selamat Datang dan Layanan Kesehatan Gigi.">
   <link rel="icon" href="../assets/gigi.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- CSS Khusus Home -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../css/Home.css">
 </head>
-
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">Home</div>
-    <button class="menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <ul id="navMenu">
-      <li><a href="../index.html" class="logout-btn" id="logoutBtn">Logout</a></li>
-    </ul>
-  </nav>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+      <div class="logo">
+        <i class="fa-solid fa-tooth" aria-hidden="true"></i> drg. Danny Hanggono
+      </div>
+      <button class="menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <ul id="navMenu">
+        <li>
+          <a href="../index.html" class="logout-btn" id="logoutBtn">Logout</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Main Container -->
   <main class="container" id="dashboardCards">
-    <section class="welcome" id="welcomeSection">
+    <section class="welcome" id="welcomeSection" aria-live="polite">
       <h1></h1>
       <p></p>
     </section>
-    <!-- Cards Dashboard -->
     <section class="cards" id="cardsContainer">
       <article class="card">
         <h2>Entry Harian</h2>
@@ -41,8 +45,7 @@
       <article class="card">
         <h2>Lihat Entry</h2>
         <p>Melihat entry harian yang telah disimpan</p>
-        <a href="https://docs.google.com/spreadsheets/d/1Ixd2BhZKvvPRu0XcngLK7jF_TrHcuVXSLcWyuiTsOLU/edit?gid=1700741156"
-          class="btn" data-action="lihat">Lihat Data Entry</a>
+        <a href="https://docs.google.com/spreadsheets/d/1Ixd2BhZKvvPRu0XcngLK7jF_TrHcuVXSLcWyuiTsOLU/edit?gid=1700741156" class="btn" data-action="lihat">Lihat Data Entry</a>
       </article>
       <article class="card">
         <h2>Lokasi Praktek</h2>
@@ -57,13 +60,10 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer>
+  <footer role="contentinfo">
     &copy; 2024 Praktek Mandiri drg. Danny Hanggono
   </footer>
 
-  <!-- JavaScript Khusus Home -->
   <script src="../js/Home.js" defer></script>
 </body>
-
 </html>

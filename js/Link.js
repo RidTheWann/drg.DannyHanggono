@@ -1,9 +1,10 @@
-// Set iframe src saat load (misalnya untuk menampilkan map.html)
-window.addEventListener('load', function () {
-  document.getElementById('previewFrame');
-})
+'use strict';
 
-// Event listener untuk tombol kembali
-document.getElementById('backButton').addEventListener('click', function() {
-  window.history.back();
+document.addEventListener('DOMContentLoaded', function() {
+  const backButton = document.getElementById('backButton');
+  if (backButton) {
+    backButton.addEventListener('click', function() {
+      window.history.back();
+    });
+  }
 });
